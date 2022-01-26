@@ -1,0 +1,11 @@
+{
+  "name": "rollup-plugin-wcmoon-ui",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "module": "./index.js",
+  "author": "wcmoon",
+  "keywords": [
+    "rollup-plugin"
+  ],
+  "license": "MIT"
+}
