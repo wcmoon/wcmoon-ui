@@ -4,8 +4,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
-import typescript from '@rollup/plugin-typescript';
+// import typescript from '@rollup/plugin-typescript';
+import typescript from "rollup-plugin-ts";
 import css from 'rollup-plugin-css-only';
+import { transformSync } from 'esbuild';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -49,8 +51,9 @@ export default {
       }),
       compilerOptions: {
         // enable run-time checks when not in production
-        dev: !production
-      }
+        dev: !production,
+        // customElement: true,
+      },
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
@@ -66,10 +69,7 @@ export default {
       dedupe: ['svelte']
     }),
     commonjs(),
-    typescript({
-      sourceMap: !production,
-      inlineSources: !production
-    }),
+    typescript(),
 
     // In dev mode, call `npm run start` once
     // the bundle has been generated
